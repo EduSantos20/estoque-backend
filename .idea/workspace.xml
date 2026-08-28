@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="409d7e57-141d-40b1-b776-3e6b0fdd0d1f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/EstoqueApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/config/CorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/config/DataSeedConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/controller/EstoqueController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/controller/RelatorioController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/controller/UsuarioController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/AjusteQuantidadeRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/CriarUsuarioRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/ErroResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/EstoqueTamanhoDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/LoginRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/LoginResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/MetaRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/ReceberEncomendaRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/UsuarioDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/dto/VendaRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/exception/NegocioException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/model/EstoqueTamanho.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/model/RelatorioDetalhe.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/model/RelatorioSemanal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/model/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/model/Usuario.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/repository/EstoqueTamanhoRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/repository/RelatorioDetalheRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/repository/RelatorioSemanalRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/repository/UsuarioRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/security/JwtAuthFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/security/JwtUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/security/UserDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/service/EstoqueService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/service/RelatorioService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/loja/estoque/service/UsuarioService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/EstoqueApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/config/CorsConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/config/SecurityConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/controller/AuthController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/controller/EstoqueController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/controller/RelatorioController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/controller/UsuarioController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/AjusteQuantidadeRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/CriarUsuarioRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/ErroResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/EstoqueTamanhoDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/LoginRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/LoginResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/MetaRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/ReceberEncomendaRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/UsuarioDTO.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/dto/VendaRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/exception/NegocioException.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/EstoqueTamanho$EstoqueTamanhoBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/EstoqueTamanho.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/RelatorioDetalhe$RelatorioDetalheBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/RelatorioDetalhe.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/RelatorioSemanal$RelatorioSemanalBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/RelatorioSemanal.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/Role.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/Usuario$UsuarioBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/model/Usuario.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/repository/EstoqueTamanhoRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/repository/RelatorioDetalheRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/repository/RelatorioSemanalRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/repository/UsuarioRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/security/JwtAuthFilter.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/security/JwtUtil.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/security/UserDetailsServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/service/EstoqueService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/service/RelatorioService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/com/loja/estoque/service/UsuarioService.class" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="41" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.0000441247654281" />
+      <entry key="MS500" value="1.202335354274687" />
+      <entry key="S2" value="3.4156535312918765" />
+      <entry key="S5" value="6.57803310298365" />
+      <entry key="S10" value="8.93823097020287" />
+      <entry key="S30" value="15.310076948028772" />
+      <entry key="S60" value="21.344811852805275" />
+      <entry key="M2" value="26.488608886302533" />
+      <entry key="M5" value="30.64748548827155" />
+      <entry key="M10" value="32.25941510111917" />
+      <entry key="M15" value="32.824803950066254" />
+      <entry key="M30" value="33.40486681014281" />
+      <entry key="H1" value="33.70052442534658" />
+      <entry key="H2" value="33.84978178200535" />
+      <entry key="H4" value="33.924770382771584" />
+      <entry key="D1" value="33.98744495909945" />
+      <entry key="W1" value="33.99820601155575" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="0.0" />
+      <entry key="MS500" value="0.0" />
+      <entry key="S2" value="0.0" />
+      <entry key="S5" value="0.0" />
+      <entry key="S10" value="0.0" />
+      <entry key="S30" value="0.0" />
+      <entry key="S60" value="0.0" />
+      <entry key="M2" value="0.0" />
+      <entry key="M5" value="0.0" />
+      <entry key="M10" value="0.0" />
+      <entry key="M15" value="0.0" />
+      <entry key="M30" value="0.0" />
+      <entry key="H1" value="0.0" />
+      <entry key="H2" value="0.0" />
+      <entry key="H4" value="0.0" />
+      <entry key="D1" value="0.0" />
+      <entry key="W1" value="0.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="0.9395645010193747" />
+      <entry key="MS500" value="1.1879375809211046" />
+      <entry key="S2" value="3.4059971775020537" />
+      <entry key="S5" value="6.5694056093057345" />
+      <entry key="S10" value="8.931857952871633" />
+      <entry key="S30" value="15.306152137245789" />
+      <entry key="S60" value="21.342023114660833" />
+      <entry key="M2" value="26.486864844153438" />
+      <entry key="M5" value="30.6466751280562" />
+      <entry key="M10" value="32.25898810139425" />
+      <entry key="M15" value="32.82451418358274" />
+      <entry key="M30" value="33.40471931127394" />
+      <entry key="H1" value="33.70045000942525" />
+      <entry key="H2" value="33.849744405825966" />
+      <entry key="H4" value="33.92475165242604" />
+      <entry key="D1" value="33.98744183148917" />
+      <entry key="W1" value="33.998205564609925" />
+    </decayedShown>
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3IX2ZNVhyjNTQDRZCozPf4wBHPO" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "Spring Boot.EstoqueApplication.executor": "Run",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.jshint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.jshint": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "to.speed.mode.migration.done": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "TEXT"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Faculdade\chuteiras-estoque\estoque-backend" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="EstoqueApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="estoque-chuteiras" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.loja.estoque.EstoqueApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-63390994e64e-intellij.indexing.shared.core-IU-262.8665.258" />
+        <option value="bundled-js-predefined-d6986cc7102b-4abd2a77f808-JavaScript-IU-262.8665.258" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="409d7e57-141d-40b1-b776-3e6b0fdd0d1f" name="Changes" comment="" />
+      <created>1787896648740</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1787896648740</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
