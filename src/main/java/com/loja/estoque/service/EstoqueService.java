@@ -1,6 +1,7 @@
 package com.loja.estoque.service;
 
 import com.loja.estoque.exception.NegocioException;
+import com.loja.estoque.model.Categoria;
 import com.loja.estoque.model.EstoqueTamanho;
 import com.loja.estoque.repository.EstoqueTamanhoRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,13 +16,20 @@ public class EstoqueService {
 
     private final EstoqueTamanhoRepository repository;
 
-    public List<EstoqueTamanho> listarTodos() {
-        return repository.findAllByOrderByTamanhoAsc();
+    /** Lista todos os tamanhos de uma categoria especifica (Campo, Futsal ou Society). */
+    public List<EstoqueTamanho> listarPorCategoria(Categoria categoria) {
+        return repository.findByCategoriaOrderByTamanhoAsc(categoria);
     }
 
-    private EstoqueTamanho buscarOuFalhar(Integer tamanho) {
-        return repository.findById(tamanho)
-                .orElseThrow(() -> new NegocioException("Tamanho " + tamanho + " nao existe"));
+    /** Lista tudo, de todas as categorias (usado internamente no fechamento semanal). */
+    public List<EstoqueTamanho> listarTodos() {
+        return repository.findAllByOrderByCategoriaAscTamanhoAsc();
+    }
+
+    private EstoqueTamanho buscarOuFalhar(Categoria categoria, Integer tamanho) {
+        return repository.findByCategoriaAndTamanho(categoria, tamanho)
+                .orElseThrow(() -> new NegocioException(
+                        "Tamanho " + tamanho + " nao existe na categoria " + categoria.getLabel()));
     }
 
     /**
@@ -29,8 +37,8 @@ public class EstoqueService {
      * Nao permite ficar negativo.
      */
     @Transactional
-    public EstoqueTamanho ajustarEstoque(Integer tamanho, int delta) {
-        EstoqueTamanho linha = buscarOuFalhar(tamanho);
+    public EstoqueTamanho ajustarEstoque(Categoria categoria, Integer tamanho, int delta) {
+        EstoqueTamanho linha = buscarOuFalhar(categoria, tamanho);
         int novoValor = linha.getEstoque() + delta;
         if (novoValor < 0) {
             throw new NegocioException("Estoque do tamanho " + tamanho + " nao pode ficar negativo");
@@ -40,12 +48,12 @@ public class EstoqueService {
     }
 
     /**
-     * Ajusta a quantidade "a caminho" (+ ou -). Usado apenas por usuarios autorizados (ADMIN)
-     * ao registrar uma nova compra.
+     * Ajusta a quantidade "a caminho" (+ ou -). Usado apenas por usuarios autorizados (ADMIN),
+     * normalmente atraves da confirmacao de um pedido novo (ver "Fazer Pedido" no frontend).
      */
     @Transactional
-    public EstoqueTamanho ajustarACaminho(Integer tamanho, int delta) {
-        EstoqueTamanho linha = buscarOuFalhar(tamanho);
+    public EstoqueTamanho ajustarACaminho(Categoria categoria, Integer tamanho, int delta) {
+        EstoqueTamanho linha = buscarOuFalhar(categoria, tamanho);
         int novoValor = linha.getACaminho() + delta;
         if (novoValor < 0) {
             throw new NegocioException("Quantidade 'a caminho' do tamanho " + tamanho + " nao pode ficar negativa");
@@ -59,8 +67,8 @@ public class EstoqueService {
      * Usado apenas por usuarios autorizados (ADMIN).
      */
     @Transactional
-    public EstoqueTamanho receberEncomenda(Integer tamanho, int quantidade) {
-        EstoqueTamanho linha = buscarOuFalhar(tamanho);
+    public EstoqueTamanho receberEncomenda(Categoria categoria, Integer tamanho, int quantidade) {
+        EstoqueTamanho linha = buscarOuFalhar(categoria, tamanho);
         if (quantidade > linha.getACaminho()) {
             throw new NegocioException(
                     "Nao e possivel receber " + quantidade + " pares: apenas " + linha.getACaminho() + " estao a caminho para o tamanho " + tamanho);
@@ -75,8 +83,8 @@ public class EstoqueService {
      * Pode ser feito por qualquer usuario logado.
      */
     @Transactional
-    public EstoqueTamanho registrarVenda(Integer tamanho, int quantidade) {
-        EstoqueTamanho linha = buscarOuFalhar(tamanho);
+    public EstoqueTamanho registrarVenda(Categoria categoria, Integer tamanho, int quantidade) {
+        EstoqueTamanho linha = buscarOuFalhar(categoria, tamanho);
         if (quantidade > linha.getEstoque()) {
             throw new NegocioException(
                     "Estoque insuficiente do tamanho " + tamanho + ". Disponivel: " + linha.getEstoque());
@@ -90,11 +98,11 @@ public class EstoqueService {
      * Altera a meta fixa de um tamanho. Usado apenas por usuarios autorizados (ADMIN).
      */
     @Transactional
-    public EstoqueTamanho alterarMeta(Integer tamanho, int novaMeta) {
+    public EstoqueTamanho alterarMeta(Categoria categoria, Integer tamanho, int novaMeta) {
         if (novaMeta < 0) {
             throw new NegocioException("A meta nao pode ser negativa");
         }
-        EstoqueTamanho linha = buscarOuFalhar(tamanho);
+        EstoqueTamanho linha = buscarOuFalhar(categoria, tamanho);
         linha.setMeta(novaMeta);
         return repository.save(linha);
     }

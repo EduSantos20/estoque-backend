@@ -1,6 +1,7 @@
 package com.loja.estoque.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.loja.estoque.model.Categoria;
 import com.loja.estoque.model.EstoqueTamanho;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class EstoqueTamanhoDTO {
+    private Categoria categoria;
     private Integer tamanho;
     private Integer estoque;
     private Integer vendasSemana;
@@ -24,6 +26,7 @@ public class EstoqueTamanhoDTO {
 
     public static EstoqueTamanhoDTO fromEntity(EstoqueTamanho e) {
         return new EstoqueTamanhoDTO(
+                e.getCategoria(),
                 e.getTamanho(),
                 e.getEstoque(),
                 e.getVendasSemana(),

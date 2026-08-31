@@ -24,6 +24,10 @@ public class RelatorioDetalhe {
     @JsonIgnore
     private RelatorioSemanal relatorio;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20)
+    private Categoria categoria;
+
     @Column(nullable = false)
     private Integer tamanho;
 

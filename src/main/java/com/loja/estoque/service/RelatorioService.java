@@ -30,13 +30,13 @@ public class RelatorioService {
     }
 
     /**
-     * Fecha a semana atual:
-     * - grava uma "foto" das vendas, estoque, meta e compra sugerida de cada tamanho
-     * - zera o contador de vendas da semana de cada tamanho, para comecar do zero
+     * Fecha a semana atual para TODAS as categorias (Campo, Futsal e Society) de uma vez:
+     * - grava uma "foto" das vendas, estoque, meta e compra sugerida de cada tamanho/categoria
+     * - zera o contador de vendas da semana de cada linha, para comecar do zero
      */
     @Transactional
     public RelatorioSemanal fecharSemana(String usuarioResponsavel, LocalDate inicioSemana) {
-        List<EstoqueTamanho> linhas = estoqueTamanhoRepository.findAllByOrderByTamanhoAsc();
+        List<EstoqueTamanho> linhas = estoqueTamanhoRepository.findAllByOrderByCategoriaAscTamanhoAsc();
 
         int totalVendas = linhas.stream().mapToInt(EstoqueTamanho::getVendasSemana).sum();
 
@@ -51,6 +51,7 @@ public class RelatorioService {
         for (EstoqueTamanho linha : linhas) {
             RelatorioDetalhe detalhe = RelatorioDetalhe.builder()
                     .relatorio(relatorio)
+                    .categoria(linha.getCategoria())
                     .tamanho(linha.getTamanho())
                     .vendas(linha.getVendasSemana())
                     .estoqueFinal(linha.getEstoque())

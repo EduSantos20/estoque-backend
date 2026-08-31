@@ -1,5 +1,6 @@
 package com.loja.estoque.config;
 
+import com.loja.estoque.model.Categoria;
 import com.loja.estoque.model.EstoqueTamanho;
 import com.loja.estoque.model.Role;
 import com.loja.estoque.model.Usuario;
@@ -13,7 +14,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * Roda uma unica vez na inicializacao:
- * - cria as linhas fixas de tamanho 34 a 43 (se ainda nao existirem)
+ * - cria as linhas fixas de tamanho 34 a 43 para CADA uma das 3 categorias
+ *   (Campo, Futsal, Society) -- 30 linhas no total -- se ainda nao existirem
  * - cria um usuario administrador padrao (se ainda nao existir nenhum usuario)
  */
 @Component
@@ -36,38 +38,42 @@ public class DataSeedConfig implements CommandLineRunner {
     @Override
     public void run(String... args) {
         seedTamanhos();
-        seedAdmin();
+        //seedAdmin();
     }
 
     private void seedTamanhos() {
-        for (int tamanho = tamanhoMin; tamanho <= tamanhoMax; tamanho++) {
-            if (!estoqueTamanhoRepository.existsById(tamanho)) {
-                EstoqueTamanho linha = EstoqueTamanho.builder()
-                        .tamanho(tamanho)
-                        .estoque(0)
-                        .vendasSemana(0)
-                        .aCaminho(0)
-                        .meta(metaPadrao)
-                        .build();
-                estoqueTamanhoRepository.save(linha);
+        for (Categoria categoria : Categoria.values()) {
+            for (int tamanho = tamanhoMin; tamanho <= tamanhoMax; tamanho++) {
+                if (!estoqueTamanhoRepository.existsByCategoriaAndTamanho(categoria, tamanho)) {
+                    EstoqueTamanho linha = EstoqueTamanho.builder()
+                            .categoria(categoria)
+                            .tamanho(tamanho)
+                            .estoque(0)
+                            .vendasSemana(0)
+                            .aCaminho(0)
+                            .meta(metaPadrao)
+                            .build();
+                    estoqueTamanhoRepository.save(linha);
+                }
             }
         }
     }
 
-    private void seedAdmin() {
-        if (!usuarioRepository.existsByUsername("gemeossports")) {
-            Usuario admin = Usuario.builder()
-                    .username("gemeossports")
-                    .nomeCompleto("Administrador")
-                    .senha(passwordEncoder.encode("gemeossports123"))
-                    .role(Role.ADMIN)
-                    .ativo(true)
-                    .build();
-            usuarioRepository.save(admin);
-            //System.out.println("=====================================================");
-            //System.out.println("Usuario gemeossports criado. username=gemeossports senha=gemeossports123");
-            //System.out.println("TROQUE ESSA SENHA assim que possivel!");
-            //System.out.println("=====================================================");
-        }
-    }
+//    private void seedAdmin() {
+//        if (!usuarioRepository.existsByUsername("admin")) {
+//            Usuario admin = Usuario.builder()
+//                    .username("admin")
+//                    .nomeCompleto("Administrador")
+//                    .senha(passwordEncoder.encode("admin123"))
+//                    .role(Role.ADMIN)
+//                    .ativo(true)
+//                    .build();
+//            usuarioRepository.save(admin);
+//            System.out.println("=====================================================");
+//            System.out.println("Usuario admin criado. username=admin senha=admin123");
+//            System.out.println("TROQUE ESSA SENHA assim que possivel!");
+//            System.out.println("=====================================================");
+//        }
+//    }
 }
+
