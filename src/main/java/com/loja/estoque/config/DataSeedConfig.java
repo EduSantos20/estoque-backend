@@ -38,7 +38,7 @@ public class DataSeedConfig implements CommandLineRunner {
     @Override
     public void run(String... args) {
         seedTamanhos();
-        //seedAdmin();
+        seedAdmin();
     }
 
     private void seedTamanhos() {
@@ -59,21 +59,17 @@ public class DataSeedConfig implements CommandLineRunner {
         }
     }
 
-//    private void seedAdmin() {
-//        if (!usuarioRepository.existsByUsername("admin")) {
-//            Usuario admin = Usuario.builder()
-//                    .username("admin")
-//                    .nomeCompleto("Administrador")
-//                    .senha(passwordEncoder.encode("admin123"))
-//                    .role(Role.ADMIN)
-//                    .ativo(true)
-//                    .build();
-//            usuarioRepository.save(admin);
-//            System.out.println("=====================================================");
-//            System.out.println("Usuario admin criado. username=admin senha=admin123");
-//            System.out.println("TROQUE ESSA SENHA assim que possivel!");
-//            System.out.println("=====================================================");
-//        }
-//    }
+    private void seedAdmin() {
+        if (!usuarioRepository.existsByUsername("gemeossports")) {
+            Usuario admin = Usuario.builder()
+                    .username("gemeossports")
+                    .nomeCompleto("Administrador")
+                    .senha(passwordEncoder.encode("gemeossports123"))
+                    .role(Role.ADMIN)
+                    .ativo(true)
+                    .build();
+            usuarioRepository.save(admin);
+        }
+    }
 }
 
