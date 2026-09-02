@@ -7,6 +7,7 @@ import com.loja.estoque.service.EstoqueService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,10 +33,11 @@ public class EstoqueController {
                 .toList();
     }
 
-    /** Registrar venda: qualquer usuario logado (ADMIN ou USER). */
+    /** Registrar venda: qualquer usuario logado (ADMIN ou USER). O usuario autenticado fica gravado no historico. */
     @PostMapping("/{categoria}/{tamanho}/venda")
-    public EstoqueTamanhoDTO registrarVenda(@PathVariable Categoria categoria, @PathVariable Integer tamanho, @Valid @RequestBody VendaRequest request) {
-        EstoqueTamanho atualizado = estoqueService.registrarVenda(categoria, tamanho, request.getQuantidade());
+    public EstoqueTamanhoDTO registrarVenda(@PathVariable Categoria categoria, @PathVariable Integer tamanho,
+                                             @Valid @RequestBody VendaRequest request, Authentication authentication) {
+        EstoqueTamanho atualizado = estoqueService.registrarVenda(categoria, tamanho, request.getQuantidade(), authentication.getName());
         return EstoqueTamanhoDTO.fromEntity(atualizado);
     }
 

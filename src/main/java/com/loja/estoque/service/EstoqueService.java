@@ -3,11 +3,14 @@ package com.loja.estoque.service;
 import com.loja.estoque.exception.NegocioException;
 import com.loja.estoque.model.Categoria;
 import com.loja.estoque.model.EstoqueTamanho;
+import com.loja.estoque.model.Venda;
 import com.loja.estoque.repository.EstoqueTamanhoRepository;
+import com.loja.estoque.repository.VendaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -15,6 +18,7 @@ import java.util.List;
 public class EstoqueService {
 
     private final EstoqueTamanhoRepository repository;
+    private final VendaRepository vendaRepository;
 
     /** Lista todos os tamanhos de uma categoria especifica (Campo, Futsal ou Society). */
     public List<EstoqueTamanho> listarPorCategoria(Categoria categoria) {
@@ -79,11 +83,12 @@ public class EstoqueService {
     }
 
     /**
-     * Registra uma venda: diminui do estoque e soma nas vendas da semana.
+     * Registra uma venda: diminui do estoque, soma nas vendas da semana
+     * e grava um registro permanente de QUEM fez a venda (para historico/auditoria).
      * Pode ser feito por qualquer usuario logado.
      */
     @Transactional
-    public EstoqueTamanho registrarVenda(Categoria categoria, Integer tamanho, int quantidade) {
+    public EstoqueTamanho registrarVenda(Categoria categoria, Integer tamanho, int quantidade, String usuario) {
         EstoqueTamanho linha = buscarOuFalhar(categoria, tamanho);
         if (quantidade > linha.getEstoque()) {
             throw new NegocioException(
@@ -91,7 +96,18 @@ public class EstoqueService {
         }
         linha.setEstoque(linha.getEstoque() - quantidade);
         linha.setVendasSemana(linha.getVendasSemana() + quantidade);
-        return repository.save(linha);
+        EstoqueTamanho salvo = repository.save(linha);
+
+        Venda venda = Venda.builder()
+                .categoria(categoria)
+                .tamanho(tamanho)
+                .quantidade(quantidade)
+                .usuario(usuario)
+                .dataHora(LocalDateTime.now())
+                .build();
+        vendaRepository.save(venda);
+
+        return salvo;
     }
 
     /**
