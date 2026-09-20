@@ -122,4 +122,43 @@ public class EstoqueService {
         linha.setMeta(novaMeta);
         return repository.save(linha);
     }
+
+    /**
+     * Cancela (estorna) uma venda ja registrada:
+     * - devolve a quantidade ao estoque
+     * - desconta do contador de vendas da semana (sem deixar negativo)
+     * - marca a venda como cancelada no historico, guardando quem cancelou e por que
+     *
+     * O registro da venda NAO e apagado, para manter o rastro de auditoria.
+     * Serve tanto para cancelamento de uma venda real quanto para corrigir
+     * uma venda lancada por engano (categoria ou tamanho errado).
+     */
+    @Transactional
+    public Venda cancelarVenda(Long vendaId, String usuarioQueCancelou, String motivo) {
+        Venda venda = vendaRepository.findById(vendaId)
+                .orElseThrow(() -> new NegocioException("Venda nao encontrada"));
+
+        if (venda.isCancelada()) {
+            throw new NegocioException("Esta venda ja foi cancelada anteriormente");
+        }
+
+        EstoqueTamanho linha = buscarOuFalhar(venda.getCategoria(), venda.getTamanho());
+
+        // devolve ao estoque
+        linha.setEstoque(linha.getEstoque() + venda.getQuantidade());
+
+        // desconta das vendas da semana, sem deixar negativo
+        // (pode ja ter zerado se a semana foi fechada depois da venda)
+        int novasVendasSemana = linha.getVendasSemana() - venda.getQuantidade();
+        linha.setVendasSemana(Math.max(novasVendasSemana, 0));
+
+        repository.save(linha);
+
+        venda.setCancelada(true);
+        venda.setCanceladaPor(usuarioQueCancelou);
+        venda.setCanceladaEm(LocalDateTime.now());
+        venda.setMotivoCancelamento(motivo);
+
+        return vendaRepository.save(venda);
+    }
 }

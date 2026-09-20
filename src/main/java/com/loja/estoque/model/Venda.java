@@ -41,4 +41,22 @@ public class Venda {
 
     @Column(name = "data_hora", nullable = false)
     private LocalDateTime dataHora;
+
+    /**
+     * Cancelamento (estorno): quando true, a venda foi cancelada e a quantidade
+     * ja voltou para o estoque. O registro NAO e apagado -- fica no historico
+     * marcado como cancelado, preservando a rastreabilidade de quem fez o que.
+     */
+    @Column(nullable = false)
+    @Builder.Default
+    private boolean cancelada = false;
+
+    @Column(name = "cancelada_por", length = 60)
+    private String canceladaPor;
+
+    @Column(name = "cancelada_em")
+    private LocalDateTime canceladaEm;
+
+    @Column(name = "motivo_cancelamento", length = 255)
+    private String motivoCancelamento;
 }

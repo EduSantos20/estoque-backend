@@ -16,8 +16,23 @@ public class VendaDTO {
     private Integer quantidade;
     private String usuario;
     private LocalDateTime dataHora;
+    private boolean cancelada;
+    private String canceladaPor;
+    private LocalDateTime canceladaEm;
+    private String motivoCancelamento;
 
     public static VendaDTO fromEntity(Venda v) {
-        return new VendaDTO(v.getId(), v.getCategoria(), v.getTamanho(), v.getQuantidade(), v.getUsuario(), v.getDataHora());
+        return new VendaDTO(
+                v.getId(),
+                v.getCategoria(),
+                v.getTamanho(),
+                v.getQuantidade(),
+                v.getUsuario(),
+                v.getDataHora(),
+                v.isCancelada(),
+                v.getCanceladaPor(),
+                v.getCanceladaEm(),
+                v.getMotivoCancelamento()
+        );
     }
 }
