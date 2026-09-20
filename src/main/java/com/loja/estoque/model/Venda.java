@@ -47,7 +47,7 @@ public class Venda {
      * ja voltou para o estoque. O registro NAO e apagado -- fica no historico
      * marcado como cancelado, preservando a rastreabilidade de quem fez o que.
      */
-    @Column(nullable = false)
+    @Column(name = "cancelada", nullable = false)
     @Builder.Default
     private boolean cancelada = false;
 
