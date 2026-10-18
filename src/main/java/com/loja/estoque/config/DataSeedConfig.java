@@ -60,11 +60,11 @@ public class DataSeedConfig implements CommandLineRunner {
     }
 
     private void seedAdmin() {
-        if (!usuarioRepository.existsByUsername("")) {
+        if (!usuarioRepository.existsByUsername("gemeossports")) {
             Usuario admin = Usuario.builder()
-                    .username("")
+                    .username("gemeossports")
                     .nomeCompleto("Administrador")
-                    .senha(passwordEncoder.encode(""))
+                    .senha(passwordEncoder.encode("gemeossports123"))
                     .role(Role.ADMIN)
                     .ativo(true)
                     .build();
