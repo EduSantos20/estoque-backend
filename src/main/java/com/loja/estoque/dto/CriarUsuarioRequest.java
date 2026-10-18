@@ -6,6 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 @Data
 public class CriarUsuarioRequest {
 
@@ -20,4 +24,14 @@ public class CriarUsuarioRequest {
 
     @NotNull(message = "Informe o perfil (ADMIN ou USER)")
     private Role role;
+
+    // ---- ponto digital (opcionais) ----
+    private Boolean controlaPonto;
+    private LocalTime horaEntrada;
+    private LocalTime horaSaida;
+    private Integer toleranciaMinutos;
+    private Integer intervaloMinutos;
+    private String diasTrabalho;
+    private BigDecimal salarioMensal;
+    private LocalDate pontoDesde;
 }

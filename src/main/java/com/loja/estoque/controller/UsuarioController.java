@@ -1,5 +1,6 @@
 package com.loja.estoque.controller;
 
+import com.loja.estoque.dto.AtualizarUsuarioRequest;
 import com.loja.estoque.dto.CriarUsuarioRequest;
 import com.loja.estoque.dto.UsuarioDTO;
 import com.loja.estoque.model.Usuario;
@@ -30,6 +31,11 @@ public class UsuarioController {
     public UsuarioDTO criar(@Valid @RequestBody CriarUsuarioRequest request) {
         Usuario usuario = usuarioService.criar(request);
         return UsuarioDTO.fromEntity(usuario);
+    }
+
+    @PutMapping("/{id}")
+    public UsuarioDTO atualizar(@PathVariable Long id, @Valid @RequestBody AtualizarUsuarioRequest request) {
+        return UsuarioDTO.fromEntity(usuarioService.atualizar(id, request));
     }
 
     @DeleteMapping("/{id}")
